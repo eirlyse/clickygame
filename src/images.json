@@ -1,0 +1,38 @@
+[
+    {
+      "id": 1,
+      "name": "Image One",
+      "image":
+        "https://vignette.wikia.nocookie.net/spongebobgalaxy/images/0/07/SpongeBob_SquarePants.png/revision/latest?cb=20171228024014"
+    },
+    {
+      "id": 2,
+      "name": "Image Two",
+      "image":
+        "https://vignette3.wikia.nocookie.net/vsbattles/images/8/80/Mr._Krabs.png/revision/latest?cb=20150919162131"
+    },
+    {
+      "id": 3,
+      "name": "Image 3",
+      "image":
+        "https://vignette2.wikia.nocookie.net/fictionalcharacters/images/a/ac/Squidward.png/revision/latest?cb=20131121012626"
+    },
+    {
+        "id": 4,
+        "name": "Image Four",
+        "image":
+          "https://i.ya-webdesign.com/images/gary-the-snail-png-image-1.png"
+      },
+    {
+        "id": 5,
+        "name": "Image Five",
+        "image":
+          "https://i.ya-webdesign.com/images/spongebob-muscle-png-6.png"
+      },
+      {
+        "id": 6,
+        "name": "Image Six",
+        "image":
+          "https://i.ya-webdesign.com/images/barnacle-boy-png.png"
+      }
+  ]
