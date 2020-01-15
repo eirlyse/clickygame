@@ -12,8 +12,9 @@ state = {
 const header = (props) => (
   <div>
       <h1 className="" >Clicky Game</h1>
-      <p className="" title="Store">Score: {props.score}</p>
-      <p className="" title="Contact">Top Score: {props.topScore}</p>
+      <p>Click on an image to earn points</p>
+      <p className="">Score: {props.score}</p>
+      <p className="">Top Score: {props.topScore}</p>
   </div>
 )
 

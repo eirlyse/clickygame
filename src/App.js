@@ -5,13 +5,7 @@ import ImageCards from './components/ImageCards/ImageCards';
 import Header from './components/header/Header';
 import images from './images.json';
 
-function randomizeImages(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    let j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-  return array;
-};
+
 
 class App extends Component {
 
@@ -22,13 +16,18 @@ class App extends Component {
     clicked: [],
   };
 
-  handleClick = id => {
-    if (this.state.clicked.indexOf(id) === -1) {
-      this.handleIncrement();
-      this.setState({ clicked: this.state.clicked.concat(id) });
-    } else {
-      this.handleReset();
+  randomizeImages = images => {
+    for (let i = images.length - 1; i > 0; i--) {
+      let j = Math.floor(Math.random() * (i + 1));
+      [images[i], images[j]] = [images[j], images[i]];
     }
+    return images;
+  };
+
+  handleImageClick = id => {
+      this.handleIncrement();
+      this.randomizeImages(images);
+
   };
 
   handleIncrement = () => {
@@ -39,22 +38,14 @@ class App extends Component {
     if (newScore >= this.state.topScore) {
       this.setState({ highScore: newScore });
     } 
-    this.handleRandom();
+    this.randomizeImages();
   };
 
-  handleReset = () => {
-    this.setState({
-      score: 0,
-      topScore: this.state.highScore,
-      clicked: []
-    });
-    this.handleRandom();
-  };
 
-  handleRandom = () => {
-    let randomizeImages = randomizeImages(images);
-    this.setState({ characters: randomizeImages });
-  };
+  // handleRandom = () => {
+  //   let randomizeImages = randomizeImages(images);
+  //   this.setState({ characters: randomizeImages });
+  // };
 
   render() {
     return (
@@ -73,22 +64,23 @@ class App extends Component {
 <Header
           title="Clicky Game"
           score={this.state.score}
-          highScore={this.state.topScore}
+          topScore={this.state.topScore}
         />
+        <div>
+        </div>
 
-        <p>
-        Click on an image to earn points
-        </p>
+        <div>
             {this.state.images.map(images => (
                 <ImageCards
                   key={images.id}
-                  handleClick={this.handleClick}
+                  handleImageClick={this.handleImageClick}
                   handleIncrement={this.handleIncrement}
-                  handleShuffle={this.handleRandom}
+                  randomizeImages={this.randomizeImages}
                   id={images.id}
                   image={images.image}
                 />
             ))}
+            </div>
 
     </Wrapper>
     )}
