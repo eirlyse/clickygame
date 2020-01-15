@@ -12,34 +12,57 @@ class App extends Component {
   state = {
     images,
     score: 0,
-    topScore: 0,
-    clicked: [],
+    clickedImages: [],
   };
 
-  randomizeImages = images => {
+  randomizeImages = (images) => {
     for (let i = images.length - 1; i > 0; i--) {
       let j = Math.floor(Math.random() * (i + 1));
       [images[i], images[j]] = [images[j], images[i]];
-    }
+    };
     return images;
   };
 
   handleImageClick = id => {
-      this.handleIncrement();
-      this.randomizeImages(images);
+    const shuffledImages = this.randomizeImages(images);
+    this.setState({images: shuffledImages});
+
+    if (this.state.clickedImages.includes(id)){
+      this.setState({
+        score: 0,
+        clickedImages: [],
+        message: "You already clicked that one, try again"
+      });
+    }
+
+    else if (this.state.score <11){
+      this.setState({
+        clickedImages: this.state.clickedImages.concat(id),
+        score: this.state.score +1,
+        message: "Good job"
+      });
+    }
+    else {
+      this.setState({
+        clickedImages: [],
+        score: 0,
+        message: "Yay, you win!"
+      });
+    }
+
 
   };
 
-  handleIncrement = () => {
-    const newScore = this.state.score + 1;
-    this.setState({
-      score: newScore,
-    });
-    if (newScore >= this.state.topScore) {
-      this.setState({ highScore: newScore });
-    } 
-    this.randomizeImages();
-  };
+  // handleIncrement = () => {
+  //   const newScore = this.state.score + 1;
+  //   this.setState({
+  //     score: newScore,
+  //   });
+  //   if (newScore >= this.state.topScore) {
+  //     this.setState({ highScore: newScore });
+  //   } 
+  //   this.randomizeImages();
+  // };
 
 
   // handleRandom = () => {
@@ -64,7 +87,7 @@ class App extends Component {
 <Header
           title="Clicky Game"
           score={this.state.score}
-          topScore={this.state.topScore}
+          message={this.state.message}
         />
         <div>
         </div>
